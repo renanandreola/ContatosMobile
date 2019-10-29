@@ -52,4 +52,8 @@ system.get('/', (req, res) => {
   res.render('index.html');
 });
 
+system.get('/contacts', (req, res) => {
+  res.render('contacts.html');
+});
+
 //
