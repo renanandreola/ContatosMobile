@@ -4,6 +4,11 @@ function verificarInputs() {
     $('button').prop('disabled', !preenchidos);
 };
 
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
 function send (event) {
   event.preventDefault();
 
@@ -13,21 +18,21 @@ function send (event) {
   var email = $("#email").val();
   var phone = $("#phone").val();
 
-  $("input").removeClass("invalid");
+  $("input").removeClass("is-invalid");
 
   // VÁLIDAÇÃO DOS CAMPOS DO FORMULÁRIO
 if (name == "") {
-  $("#name").addClass("invalid");
+  $("#name").addClass("is-invalid");
     return;
 }
 
-if (email == "") {
-  $("#email").addClass("invalid");
+if (email == "" || !validateEmail(email)) {
+  $("#email").addClass("is-invalid");
     return
 }
 
 if (phone == "") {
-  $("#phone").addClass("invalid");
+  $("#phone").addClass("is-invalid");
     return
 }else {
   var data = {
