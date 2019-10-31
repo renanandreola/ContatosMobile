@@ -35,4 +35,5 @@ padding-top: 20px;
   white-space: nowrap;
   overflow: hidden;
   width:100px;
+  display: inline-block;
 }
