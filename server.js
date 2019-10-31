@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const restify = require('restify');
 const mongoose = require('mongoose');
-const MONGODB_URL = 'mongodb+srv://renan:renan@cluster-aluno-ijbjr.gcp.mongodb.net/store?retryWrites=true&w=majority';
-//const StudentsSchema = require('./Schemas/Students');
+const MONGODB_URL = "mongodb+srv://renan:renan@contatosmobile-pjbzy.gcp.mongodb.net/contatos?retryWrites=true&w=majority";
+const ContactsSchema = require('./schemas/contacts');
 
 var port = process.env.PORT || 3000;
 
@@ -18,7 +18,7 @@ system.set('engine', env);
 
 require('useful-nunjucks-filters')(env);
 
-//const Students = mongoose.model('students', StudentsSchema);
+const Contacts = mongoose.model('contacts', ContactsSchema);
 
 //MONGO
 mongoose.connect(MONGODB_URL, {useNewUrlParser: true}, err => {
@@ -53,7 +53,19 @@ system.get('/', (req, res) => {
 });
 
 system.get('/contacts', (req, res) => {
-  res.render('contacts.html');
-});
+  Contacts.find((err, contacts) => {
+       res.render('contacts.html', {contacts: contacts});
+     });
+ });
 
 //
+
+//REQUISIÇÃO
+system.post('/index', (req, res) => {
+  var contacts = new Contacts(req.body);
+
+  contacts.save((err, contacts) => {
+    console.info(contacts.name + ' salvo');
+    res.send('ok');
+  })
+});

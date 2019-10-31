@@ -9,39 +9,54 @@
     <title></title>
   </head>
   <body>
-    <label for="" class="title"><h1>Contatos</h1></label>
-    <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
+  <label for="" class="title"><h1>Contatos</h1></label>
+  {% block content %}
+    <!-- <table class="table table-striped">
   <tbody>
     <tr>
-      <th scope="row">1</th>
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
     </tr>
     <tr>
-      <th scope="row">2</th>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
     </tr>
     <tr>
-      <th scope="row">3</th>
       <td>Larry</td>
       <td>the Bird</td>
       <td>@twitter</td>
     </tr>
   </tbody>
+</table> -->
+
+{% if contacts | length > 0 %}
+<table class="table table-striped">
+
+{% for contact in contacts %}
+<tbody>
+  <tr>
+    <td>{{ contact.name }}</td>
+    <td>{{ contact.email }}</td>
+    <td>{{ contact.phone }}</td>
+    <!-- <td><button class="btn btn-sm btn-danger btn-remove" id="{{ student._id }}">Excluir</button></td>
+    <td><button class="btn btn-sm btn-warning btn-update" id="{{ student._id }}">Editar</button></td> -->
+  </tr>
+</tbody>
+  {% endfor %}
 </table>
+{% else %}
+<div class="jumbotron">
+
+<h5 class="text-center">Sem contatos cadastrados</h5>
+</div>
+
+{% endif %}
+
+{% endblock %}
     <div class="button">
-      <a href="/" class="btn btn-primary btn-lg mt-5">Adicionar novo</a>
+      <a href="/" class="btn btn-primary btn-lg mt-5">Incluir</a>
     </div>
   </body>
 </html>

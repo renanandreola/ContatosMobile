@@ -9,17 +9,21 @@
     <title></title>
   </head>
   <body>
+    <form onsubmit="send(event)">
     <label for="" class="title"><h1>Novo</h1></label>
     <div class="input">
-        <input type="text" name="" placeholder="Nome" class="form-control form-control-lg" value="">
+        <input type="text" id="name" name="name" placeholder="Nome" class="form-control form-control-lg invalid" value="">
         <br>
-        <input type="email" name="" placeholder="Email" class="form-control form-control-lg" value="">
+        <input type="text" id="email" name="email" placeholder="Email" class="form-control form-control-lg invalid" value="">
         <br>
-        <input type="text" name="" placeholder="Telefone" class="form-control form-control-lg" value="">
+        <input type="text" id="phone" name="phone" placeholder="Telefone" class="form-control form-control-lg invalid" value="">
         <br>
     </div>
     <div class="button">
-      <a href="/contacts" class="btn btn-primary btn-lg mt-5">Adicionar novo</a>
+      <button type="submit" name="button" class="btn btn-primary btn-lg mt-5" disabled="disabled">Adicionar novo</button>
     </div>
+    </form>
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="/js/index.js"></script>
 </html>
