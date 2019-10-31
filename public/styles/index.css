@@ -30,13 +30,9 @@
 padding-top: 20px;
 }
 
-table td {
+.table td {
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 10px;
   overflow: hidden;
-}
-
-.table table-striped {
-width: 100px;
+  width:100px;
 }

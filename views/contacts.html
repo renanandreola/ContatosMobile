@@ -32,14 +32,15 @@
 </table> -->
 
 {% if contacts | length > 0 %}
-<table class="table table-striped">
+<table class="table">
 
 {% for contact in contacts %}
 <tbody>
   <tr>
     <td>{{ contact.name }}</td>
     <td>{{ contact.email }}</td>
-    <td>{{ contact.phone }}</td>
+    <!-- <td>{{ contact.phone }}</td> -->
+    <td><a href="tel:'{{ contact.phone }}'"><img src="/img_322946.png" height="32px" width="auto" /></a></td>
     <!-- <td><button class="btn btn-sm btn-danger btn-remove" id="{{ student._id }}">Excluir</button></td>
     <td><button class="btn btn-sm btn-warning btn-update" id="{{ student._id }}">Editar</button></td> -->
   </tr>
