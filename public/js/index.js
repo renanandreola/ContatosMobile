@@ -9,6 +9,10 @@ function validateEmail(email) {
     return re.test(String(email).toLowerCase());
 }
 
+function validateName(name){
+return !!name.match(/[A-Z][a-z]* [A-Z][a-z]*/);
+}
+
 function send (event) {
   event.preventDefault();
 
@@ -21,7 +25,7 @@ function send (event) {
   $("input").removeClass("is-invalid");
 
   // VÁLIDAÇÃO DOS CAMPOS DO FORMULÁRIO
-if (name == "") {
+if (name == "" || !validateName(name)) {
   $("#name").addClass("is-invalid");
     return;
 }
@@ -58,3 +62,15 @@ function clear (){
   $("#phone").val("");
   $("#email").val("");
 }
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "100%";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+// PHONE MASK
+$("#phone").mask("(99) 9999-9999?9")
