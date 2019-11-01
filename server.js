@@ -49,7 +49,7 @@ system.use(express.static('public'));
 
 //PÁGINAS
 system.get('/', (req, res) => {
-  res.render('index.html');
+  res.render('contacts.html');
 });
 
 system.get('/contacts', (req, res) => {
