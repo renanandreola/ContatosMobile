@@ -60,7 +60,7 @@ padding-top: 20px;
 }
 
 #addnew {
- position: fixed;
+ position: relative;
  width: 70%;
  bottom: 1;
  display: block;
