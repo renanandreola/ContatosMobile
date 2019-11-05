@@ -69,3 +69,14 @@ system.post('/index', (req, res) => {
     res.send('ok');
   })
 });
+
+system.get('/api/contacts/:id', (req, res) => {
+  Contacts.find({"_id": req.params.id }, (err, obj) => {
+      if (err) {
+        res.send(null);
+      } else {
+        const contact = obj[0];
+        res.send(contact);
+      }
+  });
+});

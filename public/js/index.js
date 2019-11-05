@@ -1,7 +1,7 @@
-var inputs = $('input').on('keyup', verificarInputs);
+var inputs = $('#insert input').on('keyup', verificarInputs);
 function verificarInputs() {
     const preenchidos = inputs.get().every(({value}) => value)
-    $('button').prop('disabled', !preenchidos);
+    $('#insert button').prop('disabled', !preenchidos);
 };
 
 function validateEmail(email) {
@@ -21,6 +21,7 @@ function send (event) {
   var name = $("#name").val();
   var email = $("#email").val();
   var phone = $("#phone").val();
+
 
   $("input").removeClass("is-invalid");
 
@@ -72,5 +73,35 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
 
+//
+function openNavright() {
+  document.getElementById("mySidenavright").style.width = "100%";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNavright() {
+  document.getElementById("mySidenavright").style.width = "0";
+}
+
+//
+
 // PHONE MASK
-$("#phone").mask("(99) 9999-9999?9")
+$("#phone").mask("(99) 9999-9999?9");
+
+
+
+
+
+
+//
+//
+// $('#namer').click(function () {
+//   $.ajax({
+//     url: '/api/contacts/' + $(this).attr('id'),
+//     success: function (r) {
+//       $("#nameright").val(r.name);
+//       $("#emailright").val(r.email);
+//       $("#phoneright").val(r.phone);
+//      }
+//   });
+// });
