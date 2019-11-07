@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css">
     <link rel="stylesheet" href="/styles/index.css">
     <title></title>
   </head>
@@ -17,7 +18,7 @@
 {% for contact in contacts %}
 <tbody>
   <tr>
-    <td onclick="openNavright()" id="namer" ><a href="#">{{ contact.name }}</a></td>
+    <td onclick="openNavright('{{ contact._id }}')" id="namer" ><a href="#" rel="modal:close">{{ contact.name }}</a></td>
     <td><a href="mailto:'{{ contact.email }}'">{{ contact.email }}</a></td>
     <!-- <td>{{ contact.phone }}</td> -->
     <td><a href="tel:'{{ contact.phone }}'"><img src="/img_322946.png" height="32px" width="auto" /></a></td>
@@ -34,9 +35,6 @@
 </div>
 
 {% endif %}
-
-
-
 
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -72,15 +70,14 @@
 
       <div class="buttonright">
         <div>
-        <button type="submit" name="button" class="btn btn-warning btn-md mt-2 ml-2 mr-2 float-left">Editar</button>
+        <button type="submit" name="button" class="btn btn-warning btn-md mt-2 ml-2 mr-2 float-left btn-update">Editar</button>
       </div>
       <div>
-        <button type="submit" name="button" class="btn btn-danger btn-md mt-2 ml-2 mr-2 float-left">Excluir</button>
-      </div>
+        <button type="submit" name="button" class="btn btn-danger btn-md mt-2 ml-2 mr-2 float-left btn-remove">Excluir</button>
+      </div> 
     </div>
       </form>
     </div>
-
     <!-- Use any element to open the sidenav -->
     <div class="button">
       <a href="#" class="btn btn-primary btn-lg mt-5" onclick="openNav()">Incluir</a>
@@ -93,6 +90,7 @@
 {% endblock %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   <script src="/js/index.js"></script>
 
   </body>

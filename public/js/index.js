@@ -74,8 +74,50 @@ function closeNav() {
 }
 
 //
-function openNavright() {
+function openNavright(id) {
   document.getElementById("mySidenavright").style.width = "100%";
+
+  $.ajax({
+    url: '/api/contacts/' + id,
+    success: function (r) {
+      $("#nameright").val(r.name);
+      $("#emailright").val(r.email);
+      $("#phoneright").val(r.phone);
+     }
+  })
+
+  $('.btn-remove').click(function () {
+  $.ajax({
+    url: '/contacts/' + id,
+    type: 'delete',
+    success: function (r) {
+      if (r == 'ok') {
+        console.log("Contato removido!");
+        setTimeout(function(){
+          location.reload();
+        },1500);
+      } else {
+        console.log("Contatos ", "Erro na exclusão");
+      }
+    }
+  });
+});
+
+$('.btn-update').click(function () {
+  $.ajax({
+    url: '/contacts/' + id,
+    type: 'put',
+    data: {
+      name: $("#nameright").val(),
+      phone:  $("#phoneright").val(),
+      email: $("#emailright").val()
+    },
+    success: function () {
+      console.info('atualizou');
+     }
+  });
+});
+
 }
 
 /* Set the width of the side navigation to 0 */
@@ -90,18 +132,3 @@ $("#phone").mask("(99) 9999-9999?9");
 
 
 
-
-
-
-//
-//
-// $('#namer').click(function () {
-//   $.ajax({
-//     url: '/api/contacts/' + $(this).attr('id'),
-//     success: function (r) {
-//       $("#nameright").val(r.name);
-//       $("#emailright").val(r.email);
-//       $("#phoneright").val(r.phone);
-//      }
-//   });
-// });

@@ -80,3 +80,23 @@ system.get('/api/contacts/:id', (req, res) => {
       }
   });
 });
+
+ system.delete('/contacts/:id', (req, res) => {
+  Contacts.findOneAndRemove({_id: req.params.id}, (err, obj) => {
+    if(err) {
+      res.send('error');
+    }
+    res.send('ok');
+  });
+});
+
+ system.put('/contacts/:id', (req, res) => {
+  const data = req.body;
+  data._id = req.params.id;
+  console.log(data);
+
+  Contacts.updateOne({_id: data._id}, data,  (err, student) => {
+    console.info(data.name + ' salvo');
+    res.send('ok');
+  });
+});
