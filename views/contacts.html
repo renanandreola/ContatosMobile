@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <link rel="stylesheet" href="/styles/index.css">
     <title></title>
   </head>
@@ -47,9 +48,10 @@
           <br>
           <input type="text" id="phone" name="phone" placeholder="Telefone" class="form-control form-control-lg" value="">
           <br>
-      </div>
+      
       <div class="button" id="addnew">
         <button type="submit" name="button" class="btn btn-success btn-lg mt-5" disabled="disabled">Adicionar novo</button>
+      </div>
       </div>
       </form>
     </div>
@@ -59,28 +61,30 @@
       <form id="update" onsubmit="send(event)">
       <h1 class="title text-center">Dados</h1>
 
-      <div class="inputright">
+      <div class="input">
+          <input type="hidden" id="idright" name="idright">
           <input type="text" id="nameright" name="name" class="form-control form-control-lg">
           <br>
           <input type="text" id="emailright" name="email" class="form-control form-control-lg">
           <br>
           <input type="text" id="phoneright" name="phone" class="form-control form-control-lg">
           <br>
-      </div>
+      
 
       <div class="buttonright">
         <div>
-        <button type="submit" name="button" class="btn btn-warning btn-md mt-2 ml-2 mr-2 float-left btn-update">Editar</button>
+        <button type="submit" name="button" onclick="editContact()" class="btn btn-warning btn-md mt-2 mr-1 float-left btn-update">Editar</button>
       </div>
       <div>
-        <button type="submit" name="button" class="btn btn-danger btn-md mt-2 ml-2 mr-2 float-left btn-remove">Excluir</button>
+        <button type="submit" name="button" onclick="removeContact()" class="btn btn-danger btn-md mt-2 ml-1 float-left btn-remove">Excluir</button>
       </div> 
+    </div>
     </div>
       </form>
     </div>
     <!-- Use any element to open the sidenav -->
     <div class="button">
-      <a href="#" class="btn btn-primary btn-lg mt-5" onclick="openNav()">Incluir</a>
+      <a href="#" class="btn btn-primary btn-lg mt-5 btn-include" onclick="openNav()">Incluir</a>
     </div>
 
     <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
@@ -89,9 +93,9 @@
 
 {% endblock %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   <script src="/js/index.js"></script>
-
   </body>
 </html>

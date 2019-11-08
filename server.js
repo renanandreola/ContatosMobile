@@ -55,7 +55,7 @@ system.get('/', (req, res) => {
 system.get('/contacts', (req, res) => {
   Contacts.find((err, contacts) => {
        res.render('contacts.html', {contacts: contacts});
-     });
+     }).sort( { name: 1 } );
  });
 
 //

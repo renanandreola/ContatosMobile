@@ -77,6 +77,8 @@ function closeNav() {
 function openNavright(id) {
   document.getElementById("mySidenavright").style.width = "100%";
 
+  $('#idright').val(id);
+
   $.ajax({
     url: '/api/contacts/' + id,
     success: function (r) {
@@ -85,50 +87,89 @@ function openNavright(id) {
       $("#phoneright").val(r.phone);
      }
   })
+};
 
-  $('.btn-remove').click(function () {
-  $.ajax({
-    url: '/contacts/' + id,
-    type: 'delete',
-    success: function (r) {
-      if (r == 'ok') {
-        console.log("Contato removido!");
-        setTimeout(function(){
-          location.reload();
-        },1500);
-      } else {
-        console.log("Contatos ", "Erro na exclusão");
-      }
+function removeContact () {
+  var id = $('#idright').val();
+  $.confirm({
+    title: 'Confirmação',
+    content: 'Deseja realmente excluir esse contato?',
+    buttons: {
+        confirm: {
+          btnClass: 'btn-danger',
+          text: 'Excluir',
+          action: function () {
+            $.alert('Contato excluído!');
+            $.ajax({
+                url: '/contacts/' + id,
+                type: 'delete',
+                success: function (r) {
+                  if (r == 'ok') {
+                    console.log("Contato removido!");
+                    setTimeout(function(){
+                      location.reload();
+                    },1500);
+                  } else {
+                    console.log("Contatos ", "Erro na exclusão");
+                  }
+                }
+              });
+            }
+          }
+        ,
+        cancel: function () {  
+      },        
     }
-  });
-});
+  })
+};
 
-$('.btn-update').click(function () {
-  $.ajax({
-    url: '/contacts/' + id,
-    type: 'put',
-    data: {
-      name: $("#nameright").val(),
-      phone:  $("#phoneright").val(),
-      email: $("#emailright").val()
-    },
-    success: function () {
-      console.info('atualizou');
-     }
-  });
-});
+function editContact () {
+  var id = $('#idright').val();
+  $.confirm({
+    title: 'Confirmação',
+    content: 'Deseja realmente alterar esse contato?',
+    buttons: {
+        confirm: {
+          btnClass: 'btn-warning',
+          text: 'Alterar',
+          action: function () {
+            $.alert('Contato alterado!');
+              $.ajax({
+                url: '/contacts/' + id,
+                type: 'put',
+                data: {
+                  name: $("#nameright").val(),
+                  phone:  $("#phoneright").val(),
+                  email: $("#emailright").val()
+                },
+                success: function () {
+                  console.info('atualizou');
+                 }
+              });
+            }
+          }
+        ,
+        cancel: function () {
+        location.reload();  
+      },        
+    }
+  })
+};
 
-}
 
 /* Set the width of the side navigation to 0 */
 function closeNavright() {
   document.getElementById("mySidenavright").style.width = "0";
+  setTimeout(function(){
+  location.reload();
+  },400);
 }
 
 //
 
 // PHONE MASK
 $("#phone").mask("(99) 9999-9999?9");
+
 
 
 
