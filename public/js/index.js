@@ -47,6 +47,7 @@ if (phone == "") {
   }
   $.post('/index', data, function (res) {
        if(res === 'ok') {
+         console.log("teste")
          setTimeout(function(){
           location.reload();
         },1500);
